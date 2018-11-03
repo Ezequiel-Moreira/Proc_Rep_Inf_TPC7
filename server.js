@@ -26,7 +26,7 @@ app.get('/',(req,res,next)=>{
   res.end()
 })
 
-app.get('/ficheiros',(req,res,next)=>{
+app.get('/ficheiros',(req,res)=>{
 
   jsonfile.readFile(bd,(erro,registo)=>{
     if(!erro){
@@ -38,7 +38,7 @@ app.get('/ficheiros',(req,res,next)=>{
   })
 })
 
-app.post('/processaForm',(req,res,next)=>{
+app.post('/processaForm',(req,res)=>{
   var form = new formidable.IncomingForm()
   form.parse(req,(erro,fields,files)=>{
       
@@ -57,31 +57,29 @@ app.post('/processaForm',(req,res,next)=>{
 
         jsonfile.readFile(bd,(erro,registos)=>{
           if(!erro){
-            var registo = JSON.parse(registos)
-            registo.push(addToRegisto)
-            jsonfile.writeFile(bd,registo,(erro2)=>{
-              if(!erro2){console.log('registo guardado com sucesso!')}
+            registos.push(addToRegisto)
+            jsonfile.writeFile(bd,registos,(erro2)=>{
+              if(!erro2){
+                console.log('registo guardado com sucesso!')
+              }
               else{console.log('Erro:' + erro2)}
             })
           }else{
             console.log('Erro: ' + erro)
           }
-        },
-        res.write(
-          pug.renderFile('views/resposta.pug',
-                        {ficheiro: files.ficheiro.name, 
-                          status:'Ficheiro recebido e guardado com sucesso!'
-                        })
-                  ),
-        res.end()
-        )
-
-        
+        })
       }else{
         res.write(pug.renderFile('erro,pug',{e: 'Erro a guardar ficheiro' + erro}))
         res.end()
       }
     })
+    res.write(
+      pug.renderFile('views/resposta.pug',
+                    {ficheiro: files.ficheiro.name, 
+                      status:'Ficheiro recebido e guardado com sucesso!'
+                    })
+              )
+    res.end()
   })
 })
 
