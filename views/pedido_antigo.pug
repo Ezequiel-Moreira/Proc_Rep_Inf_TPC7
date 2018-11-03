@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  header.w3-container.w3-teal
+    h3 Registo de Tese
+  .w3-container
+    form.w3-container(action='/processaForm', method='POST')
+      label.w3-text-teal
+        b Titulo
+      input.w3-input.w3-border.w3-grey(type='text', name='titulo')
+      label.w3-text-teal
+        b Data
+      input.w3-input.w3-border.w3-grey(type='text', name='data')
+      label.w3-text-teal
+        b Tipo
+        p
+      label.w3-text-black
+        b Mestrado
+        input.w3-input.w3-border.w3-grey(type='radio', name='tipo' value='mestrado')
+      label.w3-text-black
+        b Doutoramento
+        input.w3-input.w3-border.w3-grey(type='radio', name='tipo' value='doutoramento')
+      label.w3-text-teal
+        b Nome do aluno
+      input.w3-input.w3-border.w3-grey(type='text', name='nome')
+      label.w3-text-teal
+        b Identificador do aluno
+      input.w3-input.w3-border.w3-grey(type='text', name='identificacao')
+      label.w3-text-teal
+        b Curso do aluno
+      input.w3-input.w3-border.w3-grey(type='text', name='curso')
+      label.w3-text-teal
+        b Instituição do aluno
+      input.w3-input.w3-border.w3-grey(type='text', name='instituicao')
+      input.w3-btn.w3-blue-grey(type='submit', value='Enviar')

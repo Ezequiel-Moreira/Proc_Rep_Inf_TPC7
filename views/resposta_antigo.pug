@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  header.w3-container.w3-teal
+    h3 Tese recebida
+  .w3-container
+    table.w3-table-all
+      tr
+        th Titulo
+        td=tese.titulo
+      tr
+        th Data 
+        td=tese.data
+      tr
+        th Tipo
+        td=tese.tipo
+      tr
+        th Nome do aluno
+        td=tese.nome
+      tr
+        th Identificação do aluno
+        td=tese.identificacao
+      tr
+        th Curso do aluno
+        td=tese.curso
+      tr
+        th Instituição do aluno
+        td=tese.instituicao

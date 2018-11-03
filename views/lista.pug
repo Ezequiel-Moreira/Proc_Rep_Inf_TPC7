@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  header.w3-container.w3-teal
+    h3 Listagem de teses
+  .w3-container
+    table.w3-table-all
+      tr
+        th Titulo
+        th Data
+        th Tipo
+        th Nome aluno
+        th Id aluno
+        th Curso aluno
+        th Instituição aluno
+      each tese in lista
+        tr
+          td=tese.titulo
+          td=tese.data
+          td=tese.tipo
+          td=tese.nome
+          td=tese.identificacao
+          td=tese.curso
+          td=tese.instituicao
