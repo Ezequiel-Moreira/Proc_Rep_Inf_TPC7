@@ -1,0 +1,28 @@
+extend layout
+
+block content
+  .w3-container
+    .w3-card-4
+      header.w3-container.w3-teal
+        h3 Upload de ficheiro
+      .w3-container
+        form.w3-container(action='/principal', method='POST', enctype='multipart/form-data')
+          label.w3-text-teal
+            b Ficheiro
+          input.w3-input.w3-border.w3-grey(type='file', name='ficheiro')
+          label.w3-text-teal
+            b Descrição
+          input.w3-input.w3-border.w3-grey(type='text', name='desc')
+          input.w3-btn.w3-blue-grey(type='submit', value='Enviar')
+      .w3-container
+        table.w3-table-all
+          tr
+            th Ficheiro
+            th Descrição
+          each ficheiro in lista
+            tr
+              td
+                a(href='file:///home/iamtruth/mestrado/processamento\ e\ representacao\ de\ informacao/aula7/TPC7/servidor/data/uploaded/' + ficheiro.nome)= ficheiro.nome          
+              td=ficheiro.desc
+  footer.w3-container.w3-teal
+        adress Criado por Ezequiel Moreira
