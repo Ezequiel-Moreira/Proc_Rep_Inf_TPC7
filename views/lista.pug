@@ -10,7 +10,8 @@ block content
         th Descrição
       each ficheiro in lista
         tr
-          td=ficheiro.nome
+          td
+            a(href='file:///home/iamtruth/mestrado/processamento\ e\ representacao\ de\ informacao/aula7/TPC7/servidor/data/uploaded/' + ficheiro.nome)= ficheiro.nome          
           td=ficheiro.desc
   footer.w3-container.w3-teal
         adress Criado por Ezequiel Moreira
