@@ -1,0 +1,26 @@
+{
+  "name": "servidor",
+  "version": "1.0.0",
+  "description": "Resolução do TPC7 da disciplina de Processamento e Representação de dados",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ezequiel-Moreira/Proc_Rep_Inf_TPC7.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonfile": "^5.0.0",
+    "nodemon": "^1.18.4",
+    "pug": "^2.0.3",
+    "querystring": "^0.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Ezequiel-Moreira/Proc_Rep_Inf_TPC7/issues"
+  },
+  "homepage": "https://github.com/Ezequiel-Moreira/Proc_Rep_Inf_TPC7#readme"
+}
