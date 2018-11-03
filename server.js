@@ -53,28 +53,30 @@ app.post('/processaForm',(req,res,next)=>{
         var addToRegisto = {}
 
         addToRegisto.nome = files.ficheiro.name
-        addToRegisto.desc = files.ficheiro.desc
+        addToRegisto.desc = fields.desc
 
-        jsonfile.readFile(bd,(erro,registo)=>{
+        jsonfile.readFile(bd,(erro,registos)=>{
           if(!erro){
-            registo.push(fields)
-            jsonfile.writeFile(bd,addToRegisto,(erro2)=>{
+            var registo = JSON.parse(registos)
+            registo.push(addToRegisto)
+            jsonfile.writeFile(bd,registo,(erro2)=>{
               if(!erro2){console.log('registo guardado com sucesso!')}
               else{console.log('Erro:' + erro2)}
             })
           }else{
             console.log('Erro: ' + erro)
           }
-        })
-
+        },
         res.write(
           pug.renderFile('views/resposta.pug',
                         {ficheiro: files.ficheiro.name, 
                           status:'Ficheiro recebido e guardado com sucesso!'
                         })
-                  )
+                  ),
         res.end()
+        )
 
+        
       }else{
         res.write(pug.renderFile('erro,pug',{e: 'Erro a guardar ficheiro' + erro}))
         res.end()
