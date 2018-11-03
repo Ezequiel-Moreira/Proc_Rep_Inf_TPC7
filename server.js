@@ -27,8 +27,15 @@ app.get('/',(req,res,next)=>{
 })
 
 app.get('/ficheiros',(req,res,next)=>{
-  res.write(pug.renderFile('views/lista.pug'))
-  res.end()
+
+  jsonfile.readFile(bd,(erro,registo)=>{
+    if(!erro){
+      res.write(pug.renderFile('views/lista.pug', {lista : registo}))
+    }else{
+      res.write(pug.renderFile('views/erro.pug', {e : erro}))
+    }
+    res.end()    
+  })
 })
 
 app.post('/processaForm',(req,res,next)=>{

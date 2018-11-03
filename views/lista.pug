@@ -6,19 +6,12 @@ block content
   .w3-container
     table.w3-table-all
       tr
-        th Titulo
-        th Data
-        th Tipo
-        th Nome aluno
-        th Id aluno
-        th Curso aluno
-        th Instituição aluno
-      each tese in lista
+        th Ficheiro
+        th Descrição
+      each ficheiro in lista
         tr
-          td=tese.titulo
-          td=tese.data
-          td=tese.tipo
-          td=tese.nome
-          td=tese.identificacao
-          td=tese.curso
-          td=tese.instituicao
+          td=ficheiro.file
+          td=ficheiro.desc
+  footer.w3-container.w3-teal
+        adress Criado por Ezequiel Moreira
+
