@@ -4,7 +4,7 @@
   "description": "Resolução do TPC7 da disciplina de Processamento e Representação de dados",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon test.js",
+    "test": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
