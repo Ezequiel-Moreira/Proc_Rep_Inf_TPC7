@@ -7,6 +7,7 @@ var pug = require('pug')
 var fs = require('fs')
 var formidable = require('formidable')
 var jsonfile = require('jsonfile')
+var url = require('url')
 
 var app = express()
 
@@ -15,14 +16,9 @@ var bd = "data/registo.json"
 
 app.use(logger('combined'))
 
-app.all('*',(req,res,next)=>{
-  if(req.url != '/w3.css' && req.url != '/processaForm'){
-    res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'})
-  }
-  next()
-})
 
 app.get('/',(req,res,next)=>{
+  res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'})
   jsonfile.readFile(bd,(erro,registo)=>{
     if(!erro){
       res.write(pug.renderFile('views/principal.pug', {lista : registo}))
@@ -31,6 +27,23 @@ app.get('/',(req,res,next)=>{
     }
     res.end()    
   })
+})
+
+app.get('/ficheiros/*',(req,res)=>{
+
+  var parsedUrl = url.parse(req.url,true)
+  var pathname = parsedUrl.pathname
+  var ficheiro = pathname.split('/')[2]
+
+  fs.readFile("./data/uploaded/" + ficheiro,(erro,file)=>{
+    if(erro){ 
+      console.log(erro)
+    }else{
+      res.write(file)
+      res.end()
+    }
+  })
+  
 })
 
 app.post('/processaForm',(req,res,next)=>{
@@ -79,7 +92,6 @@ app.post('/processaForm',(req,res,next)=>{
 
 })
 
-
 app.get('/w3.css',(req,res)=>{
   res.writeHead(200,{'Content-Type':'text/css'})
   fs.readFile('stylesheet/w3.css',(erro,dados)=>{
@@ -91,6 +103,5 @@ app.get('/w3.css',(req,res)=>{
     res.end()
   })
 })
-
 
 http.createServer(app).listen(porta)
